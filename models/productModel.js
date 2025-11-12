@@ -63,9 +63,11 @@ const productSchema = mongoose({
         default: Date.now,
     },
 });
+productSchema.index({ name: "text", description: "text", category: "text" });
+
 productSchema.pre("save", function (next) {
     this.updatedAt = Date.now();
     next();
 });
-const productModel = model.mongoose("product", productSchema);
+const productModel = model.mongoose("Product", productSchema);
 module.exports = productModel;
