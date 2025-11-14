@@ -7,12 +7,24 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-//  الاتصال بقاعدة البيانات
+// اتصال بقاعدة البيانات
 connectDB();
 
-//  استدعاء راوت المستخدمين
+// ############# Routes #############
+
+// Auth Routes
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
+
+// Cart Routes
+const cartRoutes = require("./routes/cartRoutes");
+app.use("/api/cart", cartRoutes);
+
+// Order Routes
+const orderRoutes = require("./routes/orderRoutes");
+app.use("/api/orders", orderRoutes);
+
+// ###################################
 
 const PORT = process.env.PORT || 5000;
 
